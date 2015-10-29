@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.newage.game.Game;
@@ -12,12 +13,11 @@ import com.newage.game.sprites.Player1;
 import com.newage.game.sprites.Player2;
 import com.newage.game.sprites.Switch;
 
+import sun.java2d.loops.MaskBlit;
+
 public class PlayState extends State implements Screen{
 	//private Texture background;
-	private Switch switch1;
-	private Switch switch2;
-	private boolean isSwitch1On;
-	private boolean isSwitch2On;
+	private Switch switch1, switch2, switch3, switch4, switch5, switch6, switch7,switch8;
 	private Player1 player1;
 	private Player2 player2;
 	private TiledMap map;
@@ -26,21 +26,18 @@ public class PlayState extends State implements Screen{
 
 	protected PlayState(GameStateManager gsm) {
 		super(gsm);
-		player1 = new Player1(0, 0);
-		player2 = new Player2(50, 0);
+		map = new TmxMapLoader().load("/Users/FishieKatekyo/Downloads/Test/core/assets/ maps/maps.tmx");
+		player1 = new Player1(33, 33, (TiledMapTileLayer) map.getLayers().get(0));
+		player2 = new Player2(33, 3*33);
 		switch1 = new Switch(300, 300);
 		switch2 = new Switch(600, 600);
-		isSwitch1On = false;
-		isSwitch2On = false;
 		//background = new Texture("background.png");
-		map = new TmxMapLoader().load("/Users/FishieKatekyo/Downloads/Test/core/assets/ maps/maps.tmx");
+		
 
 		renderer = new OrthogonalTiledMapRenderer(map);
 		camera = new OrthographicCamera();
 	    camera.setToOrtho(false,Game.WIDTH ,Game.HEIGHT );
 	    camera.update();
-		System.out.println(switch1.bounds);
-		System.out.println(switch2.bounds);
 	}
 
 	@Override
@@ -52,22 +49,13 @@ public class PlayState extends State implements Screen{
 	public void update(float dt) {
 		handelInput();
 		checkButton();
-		if (isSwitch1On == true)
+		if (switch1.isActive())
 			switch1.update(dt);
-		if (isSwitch2On == true)
+		if (switch2.isActive())
 			switch2.update(dt);
 		player1.update(dt);
 		player2.update(dt);
 	}
-
-	
-	
-	
- 
-
-
-	
-	
 	
 	@Override
 	public void render(SpriteBatch sb) {
@@ -100,11 +88,11 @@ public class PlayState extends State implements Screen{
 	public void checkButton()
 	{
 		if(player1.getBounds().overlaps(switch1.bounds)) {	
-			switch1.isOn = true;
+			switch1.setOn();
 			System.out.println("Turn button on.");
 		}
 		if(player1.getBounds().overlaps(switch2.bounds)) {
-			switch2.isOn = true;
+			switch2.setOn();
 			System.out.println("Turn button on.");
 		}
 	}

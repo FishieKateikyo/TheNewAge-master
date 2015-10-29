@@ -24,7 +24,7 @@ public class Player2 {
 	private boolean p2Right = false;
 
 	public Player2(int x, int y) {
-		position = new Vector3(50, 0, 0);
+		position = new Vector3(x, y, 0);
 		velocity = new Vector3(0, 0, 0);
 		p2Texture = new Texture("player2.png");
 		p2MoveDown = new Animation(new TextureRegion(p2Texture), 4, 0.5f, 0);
