@@ -6,12 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.newage.game.Game;
+import com.newage.game.NewAge;
 
 public class Player2 {
 	private static final int MOVEMENT = 200;
-	private Vector3 position;
-	private Vector3 velocity;
+	private Vector3 position, velocity;
 	private Texture p2Texture;
 	private Animation p2MoveDown;
 	private Animation p2MoveLeft;
@@ -22,6 +21,7 @@ public class Player2 {
 	private boolean p2Up = false;
 	private boolean p2Left = false;
 	private boolean p2Right = false;
+	private int p2Width, p2Height;
 
 	public Player2(int x, int y) {
 		position = new Vector3(x, y, 0);
@@ -31,14 +31,16 @@ public class Player2 {
 		p2MoveLeft = new Animation(new TextureRegion(p2Texture), 4, 0.5f, 1);
 		p2MoveRight = new Animation(new TextureRegion(p2Texture), 4, 0.5f, 2);
 		p2MoveUp = new Animation(new TextureRegion(p2Texture), 4, 0.5f, 3);
+		p2Height = p2Texture.getHeight() / 4;
+		p2Width = p2Texture.getWidth() / 4;
 		bounds = new Rectangle(x, y, p2Texture.getWidth() / 4, p2Texture.getHeight() / 4);
 	}
 
 	public void update(float dt) {
 		bounds.setPosition(position.x, position.y);
-
+		
 		// Move Player 2 up.
-		if ((Gdx.input.isKeyPressed(Input.Keys.UP)) && (getPosition().y < (Game.HEIGHT - p2Texture.getHeight() / 4))) {
+		if ((Gdx.input.isKeyPressed(Input.Keys.UP)) && (getPosition().y < (NewAge.HEIGHT - p2Texture.getHeight() / 4))) {
 			p2MoveUp.update(dt);
 			p2Down = false;
 			p2Up = true;
@@ -57,7 +59,7 @@ public class Player2 {
 
 			// Move Player 2 right.
 		} else if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-				&& (getPosition().x < (Game.WIDTH - p2Texture.getWidth() / 4))) {
+				&& (getPosition().x < (NewAge.WIDTH - p2Texture.getWidth() / 4))) {
 			p2MoveRight.update(dt);
 			p2Down = false;
 			p2Up = false;

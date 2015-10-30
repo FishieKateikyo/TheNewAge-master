@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.newage.game.Game;
+import com.newage.game.NewAge;
 
 public class Player1 {
 	private static final int MOVEMENT = 200;
@@ -51,7 +51,7 @@ public class Player1 {
 		boolean collided = false;
 
 		// Move Player 1 up.
-		if ((Gdx.input.isKeyPressed(Input.Keys.W)) && (getPosition().y < (Game.HEIGHT - p1Height))) {
+		if ((Gdx.input.isKeyPressed(Input.Keys.W)) && (getPosition().y < (NewAge.HEIGHT - p1Height))) {
 			p1MoveUp.update(dt);
 			p1Down = false;
 			p1Up = true;
@@ -91,7 +91,7 @@ public class Player1 {
 
 			// // Move Player 1 right.
 		} else if ((Gdx.input.isKeyPressed(Input.Keys.D))
-				&& (getPosition().x < (Game.WIDTH - p1Width))) {
+				&& (getPosition().x < (NewAge.WIDTH - p1Width))) {
 			p1MoveRight.update(dt);
 			p1Down = false;
 			p1Up = false;

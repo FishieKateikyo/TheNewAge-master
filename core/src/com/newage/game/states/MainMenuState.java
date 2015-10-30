@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.newage.game.Game;
+import com.newage.game.NewAge;
 
 public class MainMenuState extends State {
 	private Texture background;
@@ -40,8 +40,8 @@ public class MainMenuState extends State {
 	public void render(SpriteBatch sb) {
 
 		sb.begin();
-		sb.draw(background, 0, 0, Game.WIDTH, Game.HEIGHT);
-		sb.draw(playButton, (Game.WIDTH / 2) - (playButton.getWidth() / 2), Game.HEIGHT / 2);
+		sb.draw(background, 0, 0, NewAge.WIDTH, NewAge.HEIGHT);
+		sb.draw(playButton, (NewAge.WIDTH / 2) - (playButton.getWidth() / 2), NewAge.HEIGHT / 2);
 		sb.end();
 	}
 

@@ -1,13 +1,14 @@
 package com.newage.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.newage.game.states.GameStateManager;
 import com.newage.game.states.MainMenuState;
 
-public class Game extends ApplicationAdapter {
+public class NewAge extends Game{
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 704;
 	public static final String TITLE = "The New Age";
